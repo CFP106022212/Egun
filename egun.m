@@ -50,7 +50,7 @@ end
 
 
 
-
+save('boundary.mat','boundary');
 loc = zeros(length(boundary),3);
 k   = 1;
 for i = 1:length(boundary)
