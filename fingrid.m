@@ -6,12 +6,12 @@ xmax = 20;
 y1 = xmin*a+b;
 y2 = xmax*a+b;
 
-k = 3;
+k = 0;
 tick = 1;
 result = zeros(2,4);
-for i = xmin:xmax
-    for j = min([y1,y2]):max(y1,y2)
-        if abs(j-i*a-b)<=1 && abs(i-(j-b)/a)<=1
+for i = floor(xmin):ceil(xmax)
+    for j = floor(min([y1,y2]))-1:ceil(max(y1,y2))+1
+        if abs(j-i*a-b)<1 || abs(i-(j-b)/a)<1
             result(tick,1:2) = [i,j];
             result(tick,3:4) = [i-(j-b)/a,j-i*a-b];
             tick = tick+1;
