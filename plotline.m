@@ -85,7 +85,7 @@ grid on;axis equal;
 dragzoom();
 
 function pushbutton3_Callback(hObject, eventdata, handles)
-handles.output = [str2double(handles.edit1.String) str2double(handles.edit2.String) str2double(handles.edit3.String) str2double(handles.edit4.String) get(handles.popupmenu1, 'value')];
+handles.output = [str2double(handles.edit1.String) str2double(handles.edit2.String) str2double(handles.edit3.String) str2double(handles.edit4.String) get(handles.popupmenu1, 'value') get(handles.popupmenu2, 'value')];
 guidata(hObject, handles);
 uiresume(handles.figure1);
 
@@ -300,3 +300,9 @@ end
 global line2;
 line2 = scatter(result(:,1),result(:,2));
 
+% --- Executes on selection change in popupmenu2.
+function popupmenu2_Callback(hObject, eventdata, handles)
+function popupmenu2_CreateFcn(hObject, eventdata, handles)
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
