@@ -134,3 +134,202 @@ function edit10_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+
+
+% --- Executes on button press in pushbutton5.
+function pushbutton5_Callback(hObject, eventdata, handles)
+posx  = str2double(handles.edit1.String);
+set(handles.edit1,'string',num2str(posx+str2double(handles.edit6.String)));
+posy  = str2double(handles.edit2.String);
+r     = str2double(handles.edit3.String);
+theta = str2double(handles.edit4.String):0.001:str2double(handles.edit5.String);
+x     = r*cos(theta)+ posx + str2double(handles.edit6.String);
+y     = r*sin(theta)+ posy;
+try
+    global line1
+    delete(line1)
+end
+global line1;
+line1 = plot(x,y);
+grid on;axis equal;
+dragzoom();
+
+% --- Executes on button press in pushbutton6.
+function pushbutton6_Callback(hObject, eventdata, handles)
+posx  = str2double(handles.edit1.String);
+set(handles.edit1,'string',num2str(posx-str2double(handles.edit6.String)));
+posy  = str2double(handles.edit2.String);
+r     = str2double(handles.edit3.String);
+theta = str2double(handles.edit4.String):0.001:str2double(handles.edit5.String);
+x     = r*cos(theta)+ posx - str2double(handles.edit6.String);
+y     = r*sin(theta)+ posy;
+try
+    global line1
+    delete(line1)
+end
+global line1;
+line1 = plot(x,y);
+grid on;axis equal;
+dragzoom();
+
+% --- Executes on button press in pushbutton7.
+function pushbutton7_Callback(hObject, eventdata, handles)
+posx  = str2double(handles.edit1.String);
+posy  = str2double(handles.edit2.String);
+set(handles.edit2,'string',num2str(posy+str2double(handles.edit7.String)));
+r     = str2double(handles.edit3.String);
+theta = str2double(handles.edit4.String):0.001:str2double(handles.edit5.String);
+x     = r*cos(theta)+ posx;
+y     = r*sin(theta)+ posy + str2double(handles.edit7.String);
+try
+    global line1
+    delete(line1)
+end
+global line1;
+line1 = plot(x,y);
+grid on;axis equal;
+dragzoom();
+
+% --- Executes on button press in pushbutton8.
+function pushbutton8_Callback(hObject, eventdata, handles)
+posx  = str2double(handles.edit1.String);
+posy  = str2double(handles.edit2.String);
+set(handles.edit2,'string',num2str(posy-str2double(handles.edit7.String)));
+r     = str2double(handles.edit3.String);
+theta = str2double(handles.edit4.String):0.001:str2double(handles.edit5.String);
+x     = r*cos(theta)+ posx;
+y     = r*sin(theta)+ posy - str2double(handles.edit7.String);
+try
+    global line1
+    delete(line1)
+end
+global line1;
+line1 = plot(x,y);
+grid on;axis equal;
+dragzoom();
+
+% --- Executes on button press in pushbutton9.
+function pushbutton9_Callback(hObject, eventdata, handles)
+posx  = str2double(handles.edit1.String);
+posy  = str2double(handles.edit2.String);
+r     = str2double(handles.edit3.String);
+set(handles.edit3,'string',num2str(r+str2double(handles.edit8.String)));
+theta = str2double(handles.edit4.String):0.001:str2double(handles.edit5.String);
+x     = (r+str2double(handles.edit8.String))*cos(theta)+ posx;
+y     = (r+str2double(handles.edit8.String))*sin(theta)+ posy;
+try
+    global line1
+    delete(line1)
+end
+global line1;
+line1 = plot(x,y);
+grid on;axis equal;
+dragzoom();
+
+% --- Executes on button press in pushbutton10.
+function pushbutton10_Callback(hObject, eventdata, handles)
+posx  = str2double(handles.edit1.String);
+posy  = str2double(handles.edit2.String);
+r     = str2double(handles.edit3.String);
+set(handles.edit3,'string',num2str(r-str2double(handles.edit8.String)));
+theta = str2double(handles.edit4.String):0.001:str2double(handles.edit5.String);
+x     = (r-str2double(handles.edit8.String))*cos(theta)+ posx;
+y     = (r-str2double(handles.edit8.String))*sin(theta)+ posy;
+try
+    global line1
+    delete(line1)
+end
+global line1;
+line1 = plot(x,y);
+grid on;axis equal;
+dragzoom();
+
+% --- Executes on button press in pushbutton11.
+function pushbutton11_Callback(hObject, eventdata, handles)
+posx  = str2double(handles.edit1.String);
+posy  = str2double(handles.edit2.String);
+r     = str2double(handles.edit3.String);
+theta = str2double(handles.edit4.String)+str2double(handles.edit9.String):0.001:str2double(handles.edit5.String);
+set(handles.edit4,'string',num2str(str2double(handles.edit4.String)+str2double(handles.edit9.String)));
+x     = r*cos(theta)+ posx;
+y     = r*sin(theta)+ posy;
+try
+    global line1
+    delete(line1)
+end
+global line1;
+line1 = plot(x,y);
+grid on;axis equal;
+dragzoom();
+
+% --- Executes on button press in pushbutton12.
+function pushbutton12_Callback(hObject, eventdata, handles)
+posx  = str2double(handles.edit1.String);
+posy  = str2double(handles.edit2.String);
+r     = str2double(handles.edit3.String);
+theta = str2double(handles.edit4.String)-str2double(handles.edit9.String):0.001:str2double(handles.edit5.String);
+set(handles.edit4,'string',num2str(str2double(handles.edit4.String)-str2double(handles.edit9.String)));
+x     = r*cos(theta)+ posx;
+y     = r*sin(theta)+ posy;
+try
+    global line1
+    delete(line1)
+end
+global line1;
+line1 = plot(x,y);
+grid on;axis equal;
+dragzoom();
+
+% --- Executes on button press in pushbutton13.
+function pushbutton13_Callback(hObject, eventdata, handles)
+posx  = str2double(handles.edit1.String);
+posy  = str2double(handles.edit2.String);
+r     = str2double(handles.edit3.String);
+theta = str2double(handles.edit4.String):0.001:str2double(handles.edit5.String)+str2double(handles.edit10.String);
+set(handles.edit5,'string',num2str(str2double(handles.edit5.String)+str2double(handles.edit10.String)));
+x     = r*cos(theta)+ posx;
+y     = r*sin(theta)+ posy;
+try
+    global line1
+    delete(line1)
+end
+global line1;
+line1 = plot(x,y);
+grid on;axis equal;
+dragzoom();
+
+% --- Executes on button press in pushbutton14.
+function pushbutton14_Callback(hObject, eventdata, handles)
+posx  = str2double(handles.edit1.String);
+posy  = str2double(handles.edit2.String);
+r     = str2double(handles.edit3.String);
+theta = str2double(handles.edit4.String):0.001:str2double(handles.edit5.String)-str2double(handles.edit10.String);
+set(handles.edit5,'string',num2str(str2double(handles.edit5.String)-str2double(handles.edit10.String)));
+x     = r*cos(theta)+ posx;
+y     = r*sin(theta)+ posy;
+try
+    global line1
+    delete(line1)
+end
+global line1;
+line1 = plot(x,y);
+grid on;axis equal;
+dragzoom();
+
+% --- Executes on button press in pushbutton15.
+function pushbutton15_Callback(hObject, eventdata, handles)
+
+% --- Executes on selection change in popupmenu1.
+function popupmenu1_Callback(hObject, eventdata, handles)
+function popupmenu1_CreateFcn(hObject, eventdata, handles)
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on selection change in popupmenu2.
+function popupmenu2_Callback(hObject, eventdata, handles)
+function popupmenu2_CreateFcn(hObject, eventdata, handles)
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
