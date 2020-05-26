@@ -1,30 +1,4 @@
 function varargout = remove(varargin)
-% REMOVE MATLAB code for remove.fig
-%      REMOVE, by itself, creates a new REMOVE or raises the existing
-%      singleton*.
-%
-%      H = REMOVE returns the handle to a new REMOVE or the handle to
-%      the existing singleton*.
-%
-%      REMOVE('CALLBACK',hObject,eventData,handles,...) calls the local
-%      function named CALLBACK in REMOVE.M with the given input arguments.
-%
-%      REMOVE('Property','Value',...) creates a new REMOVE or raises the
-%      existing singleton*.  Starting from the left, property value pairs are
-%      applied to the GUI before remove_OpeningFcn gets called.  An
-%      unrecognized property name or invalid value makes property application
-%      stop.  All inputs are passed to remove_OpeningFcn via varargin.
-%
-%      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
-%      instance to run (singleton)".
-%
-% See also: GUIDE, GUIDATA, GUIHANDLES
-
-% Edit the above text to modify the response to help remove
-
-% Last Modified by GUIDE v2.5 26-May-2020 17:16:00
-
-% Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
                    'gui_Singleton',  gui_Singleton, ...
@@ -41,47 +15,69 @@ if nargout
 else
     gui_mainfcn(gui_State, varargin{:});
 end
-% End initialization code - DO NOT EDIT
 
-
-% --- Executes just before remove is made visible.
 function remove_OpeningFcn(hObject, eventdata, handles, varargin)
-% This function has no output args, see OutputFcn.
-% hObject    handle to figure
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-% varargin   command line arguments to remove (see VARARGIN)
-
-% Choose default command line output for remove
 handles.output = hObject;
-
-% Update handles structure
 guidata(hObject, handles);
-
-% UIWAIT makes remove wait for user response (see UIRESUME)
-% uiwait(handles.figure1);
+uiwait(handles.figure1);
 
 
 % --- Outputs from this function are returned to the command line.
 function varargout = remove_OutputFcn(hObject, eventdata, handles) 
-% varargout  cell array for returning output args (see VARARGOUT);
-% hObject    handle to figure
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Get default command line output from handles structure
 varargout{1} = handles.output;
+delete(hObject);
 
 
 % --- Executes on button press in pushbutton1.
 function pushbutton1_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton1 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+xmin = str2double(handles.edit1.String);
+xmax = str2double(handles.edit2.String);
+ymin = str2double(handles.edit3.String);
+ymax = str2double(handles.edit4.String);
+axes(handles.axes1);
+try
+    global line1
+    delete(line1)
+end
+global line1;
+line1 = rectangle('Position',[xmin ymin xmax ymax]);
+grid on;axis equal;
+dragzoom();
+
 
 
 % --- Executes on button press in pushbutton2.
 function pushbutton2_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton2 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+handles.output = [str2double(handles.edit1.String) str2double(handles.edit2.String) str2double(handles.edit3.String) str2double(handles.edit4.String)];
+guidata(hObject, handles);
+uiresume(handles.figure1);
+
+function edit1_Callback(hObject, eventdata, handles)
+function edit1_CreateFcn(hObject, eventdata, handles)
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function edit2_Callback(hObject, eventdata, handles)
+function edit2_CreateFcn(hObject, eventdata, handles)
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function edit3_Callback(hObject, eventdata, handles)
+function edit3_CreateFcn(hObject, eventdata, handles)
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function edit4_Callback(hObject, eventdata, handles)
+function edit4_CreateFcn(hObject, eventdata, handles)
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end

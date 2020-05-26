@@ -23,6 +23,8 @@ end
 function main_OpeningFcn(hObject, eventdata, handles, varargin)
 handles.output = hObject;
 guidata(hObject, handles);
+% data ¡Gnumber type x y
+% sheet¡Gnumber type meshx meshy disx disy
 
 function varargout = main_OutputFcn(hObject, eventdata, handles) 
 varargout{1} = handles.output;
@@ -181,3 +183,6 @@ end
 
 % --- Executes on button press in pushbutton5.
 function pushbutton5_Callback(hObject, eventdata, handles)
+N = plotline(handles);
+global data
+data = data(data(:,3)>N(1)&&data(:,3)<N(2)&&data(:,4)>N(3)&&data(:,4)<N(4),:);
