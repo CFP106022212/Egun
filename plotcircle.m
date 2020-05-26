@@ -318,6 +318,77 @@ dragzoom();
 
 % --- Executes on button press in pushbutton15.
 function pushbutton15_Callback(hObject, eventdata, handles)
+posx     = str2double(handles.edit1.String);
+posy     = str2double(handles.edit2.String);
+r        = str2double(handles.edit3.String);
+thetamin = str2double(handles.edit4.String);
+thetamax = str2double(handles.edit5.String);
+theta    = thetamin:0.001:thetamax;
+x        = r*cos(theta)+posx;
+y        = r*sin(theta)+posy;
+
+tick = 1;
+result = zeros(2,4);
+for i = floor(min(x)):ceil(max(x))
+    for j = floor(min(y)):ceil(max(y))
+        if angle((i-posx)+1i*(j-posy))>thetamin && angle((i-posx)+1i*(j-posy))<thetamax
+            if abs((j-posy)-sqrt(r^2-(i-posx)^2))<1 
+                result(tick,1:2) = [i,j];
+                if abs((i-posx)-sqrt(r^2-(j-posy)^2))<abs((i-posx)+sqrt(r^2-(j-posy)^2))
+                    result(tick,3:4) = [(i-posx)-sqrt(r^2-(j-posy)^2),(j-posy)-sqrt(r^2-(i-posx)^2)];
+                else 
+                    result(tick,3:4) = [(i-posx)+sqrt(r^2-(j-posy)^2),(j-posy)-sqrt(r^2-(i-posx)^2)];
+                end 
+                tick = tick+1;
+            elseif abs((j-posy)+sqrt(r^2-(i-posx)^2))<1 
+                result(tick,1:2) = [i,j];
+                if abs((i-posx)-sqrt(r^2-(j-posy)^2))<abs((i-posx)+sqrt(r^2-(j-posy)^2))
+                    result(tick,3:4) = [(i-posx)-sqrt(r^2-(j-posy)^2),(j-posy)+sqrt(r^2-(i-posx)^2)];
+                else 
+                    result(tick,3:4) = [(i-posx)+sqrt(r^2-(j-posy)^2),(j-posy)+sqrt(r^2-(i-posx)^2)];
+                end 
+                tick = tick+1;
+            elseif abs((i-posx)-sqrt(r^2-(j-posy)^2))<1  
+                result(tick,1:2) = [i,j];
+                if abs((j-posy)-sqrt(r^2-(i-posx)^2))<abs((j-posy)+sqrt(r^2-(i-posx)^2))
+                    result(tick,3:4) = [(i-posx)-sqrt(r^2-(j-posy)^2),(j-posy)-sqrt(r^2-(i-posx)^2)];
+                else 
+                    result(tick,3:4) = [(i-posx)-sqrt(r^2-(j-posy)^2),(j-posy)+sqrt(r^2-(i-posx)^2)];
+                end 
+                tick = tick+1;
+            elseif abs((i-posx)+sqrt(r^2-(j-posy)^2))<1  
+                result(tick,1:2) = [i,j];
+                if abs((j-posy)-sqrt(r^2-(i-posx)^2))<abs((j-posy)+sqrt(r^2-(i-posx)^2))
+                    result(tick,3:4) = [(i-posx)+sqrt(r^2-(j-posy)^2),(j-posy)-sqrt(r^2-(i-posx)^2)];
+                else 
+                    result(tick,3:4) = [(i-posx)+sqrt(r^2-(j-posy)^2),(j-posy)+sqrt(r^2-(i-posx)^2)];
+                end 
+                tick = tick+1;
+            end 
+        end 
+    end 
+end 
+
+switch get(handles.popupmenu1, 'value')
+    case 1
+        result = result(result(:,4)>=0,:);
+    case 2
+        result = result(result(:,4)<=0,:);
+    case 3
+        result = result(result(:,3)<=0,:);
+    case 4
+        result = result(result(:,3)>=0,:);
+end
+
+try
+    global line2
+    delete(line2)
+end
+global line2;
+line2 = scatter(result(:,1),result(:,2));
+grid on;axis equal;
+dragzoom();
+
 
 % --- Executes on selection change in popupmenu1.
 function popupmenu1_Callback(hObject, eventdata, handles)
