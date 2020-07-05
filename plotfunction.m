@@ -46,19 +46,8 @@ end
 
 % --- Executes just before plotfunction is made visible.
 function plotfunction_OpeningFcn(hObject, eventdata, handles, varargin)
-% This function has no output args, see OutputFcn.
-% hObject    handle to figure
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-% varargin   command line arguments to plotfunction (see VARARGIN)
-
-% Choose default command line output for plotfunction
 handles.output = hObject;
-
-% Update handles structure
 guidata(hObject, handles);
-
-% UIWAIT makes plotfunction wait for user response (see UIRESUME)
 uiwait(handles.figure1);
 
 
@@ -152,6 +141,8 @@ end
 global fc
 fc = fcontour(fun);
 fc.LevelList=[0,0];
+xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
+ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
 grid on;axis equal;hold on
 dragzoom();
 
@@ -186,6 +177,8 @@ end
 global fc
 fc = fcontour(fun);
 fc.LevelList=[0,0];
+xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
+ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
 grid on;axis equal;hold on
 dragzoom();
 
@@ -215,6 +208,8 @@ end
 global fc
 fc = fcontour(fun);
 fc.LevelList=[0,0];
+xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
+ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
 grid on;axis equal;hold on
 dragzoom();
 
@@ -244,6 +239,8 @@ end
 global fc
 fc = fcontour(fun);
 fc.LevelList=[0,0];
+xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
+ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
 grid on;axis equal;hold on
 dragzoom();
 
@@ -273,6 +270,8 @@ end
 global fc
 fc = fcontour(fun);
 fc.LevelList=[0,0];
+xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
+ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
 grid on;axis equal;hold on
 dragzoom();
 
@@ -306,6 +305,8 @@ end
 global fc
 fc = fcontour(fun);
 fc.LevelList=[0,0];
+xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
+ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
 grid on;axis equal;hold on
 dragzoom();
 
@@ -339,10 +340,28 @@ end
 global fc
 fc = fcontour(fun);
 fc.LevelList=[0,0];
+xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
+ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
 grid on;axis equal;hold on
 dragzoom();
 
 function pushbutton9_Callback(hObject, eventdata, handles)
+a = str2double(handles.edit1.String);
+b = str2double(handles.edit2.String);
+c = str2double(handles.edit3.String);
+d = str2double(handles.edit4.String);
+e = str2double(handles.edit5.String);
+f = str2double(handles.edit6.String);
+meshpoint = zeros(2,2);
+i = 0;
+for x=str2double(handles.edit10.String):str2double(handles.edit11.String)
+    a1 = b;
+    b1 = c*x+e;
+    c1 = d*x+f+a*x^2;
+    if b1^2-4*a1*c1>0
+        if (-b1+sqrt(b1^2-4*a1*c1))/2/a1<str2double(handles.edit11.String)
+    end
+end 
 
 function pushbutton10_Callback(hObject, eventdata, handles)
 
