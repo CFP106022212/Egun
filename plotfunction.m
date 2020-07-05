@@ -380,17 +380,51 @@ for y=floor(ymin):1:ceil(ymax)
     end
 end 
 meshpoint = unique(meshpoint,'rows','stable');
+data      = zeros(length(meshpoint),4);
 for i = 1:length(meshpoint)
+    data(i,1:2) = meshpoint(i,:);
+    x  = data(i,1);
+    y  = data(i,2);
+    a1 = b;
+    b1 = c*x+e;
+    c1 = d*x+f+a*x^2;
+    if abs((-b1+sqrt(b1^2-4*a1*c1))/2/a1-y)<abs((-b1-sqrt(b1^2-4*a1*c1))/2/a1-y) && abs((-b1+sqrt(b1^2-4*a1*c1))/2/a1-y)<1
+        data(i,4) = (-b1+sqrt(b1^2-4*a1*c1))/2/a1-y;
+    elseif abs((-b1-sqrt(b1^2-4*a1*c1))/2/a1-y)<abs((-b1+sqrt(b1^2-4*a1*c1))/2/a1-y) && abs((-b1-sqrt(b1^2-4*a1*c1))/2/a1-y)<1
+        data(i,4) = (-b1-sqrt(b1^2-4*a1*c1))/2/a1-y;
+    else
+        data(i,4) = 2;
+    end
     
-end 
-
+    a1 = a;
+    b1 = c*y+d;
+    c1 = b*y^2+e*y+f;
+    if abs((-b1+sqrt(b1^2-4*a1*c1))/2/a1-x)<abs((-b1-sqrt(b1^2-4*a1*c1))/2/a1-x) && abs((-b1+sqrt(b1^2-4*a1*c1))/2/a1-x)<1
+        data(i,3) = (-b1+sqrt(b1^2-4*a1*c1))/2/a1-x;
+    elseif abs((-b1-sqrt(b1^2-4*a1*c1))/2/a1-x)<abs((-b1+sqrt(b1^2-4*a1*c1))/2/a1-x) && abs((-b1-sqrt(b1^2-4*a1*c1))/2/a1-x)<1
+        data(i,3) = (-b1-sqrt(b1^2-4*a1*c1))/2/a1-x;
+    else
+        data(i,3) = 2;
+    end
+end
 
 try
     global me
     delete(me)
 end
 global me
-me = scatter(meshpoint(:,1),meshpoint(:,2));
+
+switch get(handles.popupmenu1, 'value')
+    case 1
+        me = scatter(data(data(:,4)<=0&data(:,4)~=2,1),data(data(:,4)<=0&data(:,4)~=2,2));
+    case 2
+        me = scatter(data(data(:,4)>=0&data(:,4)~=2,1),data(data(:,4)>=0&data(:,4)~=2,2));
+    case 3
+        me = scatter(data(data(:,3)>=0&data(:,3)~=2,1),data(data(:,3)>=0&data(:,3)~=2,2));
+    case 4
+        me = scatter(data(data(:,3)<=0&data(:,3)~=2,1),data(data(:,3)<=0&data(:,3)~=2,2));
+end
+
 
 
 function pushbutton10_Callback(hObject, eventdata, handles)
