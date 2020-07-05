@@ -1,30 +1,4 @@
 function varargout = plotfunction(varargin)
-% PLOTFUNCTION MATLAB code for plotfunction.fig
-%      PLOTFUNCTION, by itself, creates a new PLOTFUNCTION or raises the existing
-%      singleton*.
-%
-%      H = PLOTFUNCTION returns the handle to a new PLOTFUNCTION or the handle to
-%      the existing singleton*.
-%
-%      PLOTFUNCTION('CALLBACK',hObject,eventData,handles,...) calls the local
-%      function named CALLBACK in PLOTFUNCTION.M with the given input arguments.
-%
-%      PLOTFUNCTION('Property','Value',...) creates a new PLOTFUNCTION or raises the
-%      existing singleton*.  Starting from the left, property value pairs are
-%      applied to the GUI before plotfunction_OpeningFcn gets called.  An
-%      unrecognized property name or invalid value makes property application
-%      stop.  All inputs are passed to plotfunction_OpeningFcn via varargin.
-%
-%      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
-%      instance to run (singleton)".
-%
-% See also: GUIDE, GUIDATA, GUIHANDLES
-
-% Edit the above text to modify the response to help plotfunction
-
-% Last Modified by GUIDE v2.5 04-Jul-2020 22:42:29
-
-% Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
                    'gui_Singleton',  gui_Singleton, ...
@@ -290,11 +264,11 @@ c1 = -2*a*cos(theta)*sin(theta)+2*b*cos(theta)*sin(theta)+c*cos(theta)^2-c*sin(t
 d1 = d*cos(theta)+e*sin(theta);
 e1 = -d*sin(theta)+e*cos(theta);
 
-set(handles.edit1,'string',num2str(a1));
-set(handles.edit2,'string',num2str(b1));
-set(handles.edit3,'string',num2str(c1));
-set(handles.edit4,'string',num2str(d1));
-set(handles.edit5,'string',num2str(e1));
+set(handles.edit1,'string',num2str(a1));a = a1;
+set(handles.edit2,'string',num2str(b1));b = b1;
+set(handles.edit3,'string',num2str(c1));c = c1;
+set(handles.edit4,'string',num2str(d1));d = d1;
+set(handles.edit5,'string',num2str(e1));e = e1;
 
 syms x y;
 fun(x,y) = (a*x^2+b*y^2+c*x*y+d*x+e*y+f);
@@ -325,11 +299,11 @@ c1 = -2*a*cos(theta)*sin(theta)+2*b*cos(theta)*sin(theta)+c*cos(theta)^2-c*sin(t
 d1 = d*cos(theta)+e*sin(theta);
 e1 = -d*sin(theta)+e*cos(theta);
 
-set(handles.edit1,'string',num2str(a1));
-set(handles.edit2,'string',num2str(b1));
-set(handles.edit3,'string',num2str(c1));
-set(handles.edit4,'string',num2str(d1));
-set(handles.edit5,'string',num2str(e1));
+set(handles.edit1,'string',num2str(a1));a = a1;
+set(handles.edit2,'string',num2str(b1));b = b1;
+set(handles.edit3,'string',num2str(c1));c = c1;
+set(handles.edit4,'string',num2str(d1));d = d1;
+set(handles.edit5,'string',num2str(e1));e = e1;
 
 syms x y;
 fun(x,y) = (a*x^2+b*y^2+c*x*y+d*x+e*y+f);
@@ -353,15 +327,71 @@ d = str2double(handles.edit4.String);
 e = str2double(handles.edit5.String);
 f = str2double(handles.edit6.String);
 meshpoint = zeros(2,2);
-i = 0;
-for x=str2double(handles.edit10.String):str2double(handles.edit11.String)
+i = 1;
+xmin = str2double(handles.edit10.String);
+xmax = str2double(handles.edit11.String);
+ymin = str2double(handles.edit12.String);
+ymax = str2double(handles.edit13.String);
+
+for x=floor(xmin):1:ceil(xmax)
     a1 = b;
     b1 = c*x+e;
     c1 = d*x+f+a*x^2;
     if b1^2-4*a1*c1>0
-        if (-b1+sqrt(b1^2-4*a1*c1))/2/a1<str2double(handles.edit11.String)
+        if (-b1+sqrt(b1^2-4*a1*c1))/2/a1<ymax
+            meshpoint(i,:) = [x,floor((-b1+sqrt(b1^2-4*a1*c1))/2/a1)];
+            i = i+1;
+            if ceil((-b1+sqrt(b1^2-4*a1*c1))/2/a1)<ymax
+                meshpoint(i,:) = [x,ceil((-b1+sqrt(b1^2-4*a1*c1))/2/a1)];
+                i = i+1;
+            end
+        end 
+        if (-b1-sqrt(b1^2-4*a1*c1))/2/a1>ymin
+            meshpoint(i,:) = [x,ceil((-b1-sqrt(b1^2-4*a1*c1))/2/a1)];
+            i = i+1;
+            if floor((-b1-sqrt(b1^2-4*a1*c1))/2/a1)>ymin
+                meshpoint(i,:) = [x,floor((-b1-sqrt(b1^2-4*a1*c1))/2/a1)];
+                i = i+1;
+            end
+        end 
+    end
+end
+for y=floor(ymin):1:ceil(ymax)
+    a1 = a;
+    b1 = c*y+d;
+    c1 = b*y^2+e*y+f;
+    if b1^2-4*a1*c1>0
+        if (-b1+sqrt(b1^2-4*a1*c1))/2/a1<xmax
+            meshpoint(i,:) = [floor((-b1+sqrt(b1^2-4*a1*c1))/2/a1),y];
+            i = i+1;
+            if ceil((-b1+sqrt(b1^2-4*a1*c1))/2/a1)<xmax
+                meshpoint(i,:) = [ceil((-b1+sqrt(b1^2-4*a1*c1))/2/a1),y];
+                i = i+1;
+            end
+        end 
+        if (-b1-sqrt(b1^2-4*a1*c1))/2/a1>xmin
+            meshpoint(i,:) = [ceil((-b1-sqrt(b1^2-4*a1*c1))/2/a1),y];
+            i = i+1;
+            if floor((-b1-sqrt(b1^2-4*a1*c1))/2/a1)>xmin
+                meshpoint(i,:) = [floor((-b1-sqrt(b1^2-4*a1*c1))/2/a1),y];
+                i = i+1;
+            end
+        end 
     end
 end 
+meshpoint = unique(meshpoint,'rows','stable');
+for i = 1:length(meshpoint)
+    
+end 
+
+
+try
+    global me
+    delete(me)
+end
+global me
+me = scatter(meshpoint(:,1),meshpoint(:,2));
+
 
 function pushbutton10_Callback(hObject, eventdata, handles)
 
