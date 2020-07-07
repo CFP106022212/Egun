@@ -122,6 +122,7 @@ dragzoom();
 
 function pushbutton2_Callback(hObject, eventdata, handles)
 handles.output = [str2double(handles.edit1.String) str2double(handles.edit2.String) str2double(handles.edit3.String) str2double(handles.edit4.String) str2double(handles.edit5.String) str2double(handles.edit6.String) str2double(handles.edit10.String) str2double(handles.edit11.String) str2double(handles.edit12.String) str2double(handles.edit13.String) get(handles.popupmenu1, 'value') get(handles.popupmenu2, 'value')];
+%disp([str2double(handles.edit1.String) str2double(handles.edit2.String) str2double(handles.edit3.String) str2double(handles.edit4.String) str2double(handles.edit5.String) str2double(handles.edit6.String) str2double(handles.edit10.String) str2double(handles.edit11.String) str2double(handles.edit12.String) str2double(handles.edit13.String) get(handles.popupmenu1, 'value') get(handles.popupmenu2, 'value')]);
 guidata(hObject, handles);
 uiresume(handles.figure1);
 
@@ -336,6 +337,7 @@ ymax = str2double(handles.edit13.String);
 position = get(handles.popupmenu1, 'value');
 type     = get(handles.popupmenu2, 'value');
 data     = findmesh([a,b,c,d,e,f,xmin,xmax,ymin,ymax,position,type]);
+%disp([a,b,c,d,e,f,xmin,xmax,ymin,ymax,position,type]);
 try
     global me
     delete(me)

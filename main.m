@@ -46,6 +46,7 @@ global allfunction
 allfunction(fntic,:) = N;
 fntic = fntic+1;
 
+disp(N);
 data = findmesh(N);
 for j = 1:length(data)
     meshpoint(i,:) = [N(12),data(j,:)];
@@ -54,40 +55,60 @@ end
 
 syms x y;
 fun(x,y) = (N(1)*x^2+N(2)*y^2+N(3)*x*y+N(4)*x+N(5)*y+N(6));
-fc = fcontour(fun);
-fc.LevelList=[0,0];
+fcontour(fun,'LevelList',[0,0]);
 xlim([N(7) N(8)]);
 ylim([N(9) N(10)]);
 hold on
-scatter(meshpoint(:,1),meshpoint(:,2));
+scatter(meshpoint(:,2),meshpoint(:,3));
 grid on;axis equal;
 dragzoom();
 
 function pushbutton2_Callback(hObject, eventdata, handles)
-
-
-
+global allfunction
+global oldfn
+try
+    new = [oldfn;allfunction];
+catch
+    new = allfunction;
+end
+[filename filepath] = uiputfile({'*.xlsx','excel'},'save function','function.xlsx');
+xlswrite([filepath,filename],new);
 
 function pushbutton3_Callback(hObject, eventdata, handles)
-
-
-
+global meshpoint
+[filename filepath] = uiputfile({'*.xlsx','excel'},'save meshpoint','meshpoint.xlsx');
+new = [meshpoint(:,1) meshpoint(:,3) meshpoint(:,2) meshpoint(:,5) meshpoint(:,4)];
+xlswrite([filepath,filename],new);
 
 function pushbutton4_Callback(hObject, eventdata, handles)
-
-
-
+global oldfn;
+[filename filepath] = uigetfile({'*.xlsx','excel'},'load function');
+xlsFile = [filepath,filename];
+oldfn = xlsread(xlsFile);
 
 function pushbutton5_Callback(hObject, eventdata, handles)
+global oldmesh;
+[filename filepath] = uigetfile({'*.xlsx','excel'},'load meshpoint');
+xlsFile = [filepath,filename];
+oldmesh = xlsread(xlsFile);
+data = oldmesh(:,2:end);
+linepoint = zeros(2,2);
+j = 1;
+for i = 1:length(data)
+    if data(i,3) == 2
+        linepoint(j,:)=[data(i,1),data(i,2)+data(i,4)];
+        j = j+1;
+    elseif data(i,4) == 2
+        linepoint(j,:)=[data(i,1)+data(i,3),data(i,2)];
+        j = j+1;
+    else
+        linepoint(j,:)=[data(i,1)+data(i,3),data(i,2)];
+        linepoint(j+1,:)=[data(i,1),data(i,2)+data(i,4)];
+        j = j+2;
+    end
+end
+scatter(linepoint(:,2),linepoint(:,1));
 
-
-
-
-function pushbutton6_Callback(hObject, eventdata, handles)
-
-
-
-
-function pushbutton7_Callback(hObject, eventdata, handles)
+function pushbutton8_Callback(hObject, eventdata, handles)
 cla reset;
 clc;clear;
