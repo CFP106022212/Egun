@@ -46,7 +46,6 @@ global allfunction
 allfunction(fntic,:) = N;
 fntic = fntic+1;
 
-disp(N);
 data = findmesh(N);
 for j = 1:length(data)
     if N(12)-1~=0
@@ -116,6 +115,8 @@ for i = 1:length(data)
     end
 end
 scatter(linepoint(:,2),linepoint(:,1));
+hold on;grid on;axis equal;
+dragzoom();
 
 function pushbutton8_Callback(hObject, eventdata, handles)
 cla reset;
@@ -134,10 +135,23 @@ for i = 1:length(meshpoint)-1
    end
 end
 if j~=1
-   scatter(doublepoint(:,1),doublepoint(:,2),100,'r');
+   scatter(doublepoint(:,2),doublepoint(:,1),100,'r');
    disp(doublepoint);
+   grid on;axis equal;
+   
 else
    disp('No double used points');
 end
 
+function pushbutton10_Callback(hObject, eventdata, handles)
+global oldmesh
+global meshpoint
+N = deletemeshpoint(handles);
+mid = [oldmesh(:,1) oldmesh(:,3) oldmesh(:,2) oldmesh(:,5) oldmesh(:,4)];
+mid = mid(mid(:,2)>N(1)&mid(:,2)<N(2)&mid(:,3)>N(3)&mid(:,3)<N(4),:);
+meshpoint = mid;
+cla;
+scatter(mid(:,2),mid(:,3));
+hold on;grid on;axis equal;
+dragzoom();
 

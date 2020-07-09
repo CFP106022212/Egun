@@ -115,8 +115,8 @@ end
 global fc
 fc = fcontour(fun);
 fc.LevelList=[0,0];
-%xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
-%ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
+xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
+ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
 grid on;axis equal;hold on
 dragzoom();
 
@@ -152,8 +152,8 @@ end
 global fc
 fc = fcontour(fun);
 fc.LevelList=[0,0];
-%xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
-%ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
+xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
+ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
 grid on;axis equal;hold on
 dragzoom();
 
@@ -183,8 +183,8 @@ end
 global fc
 fc = fcontour(fun);
 fc.LevelList=[0,0];
-%xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
-%ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
+xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
+ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
 grid on;axis equal;hold on
 dragzoom();
 
@@ -214,8 +214,8 @@ end
 global fc
 fc = fcontour(fun);
 fc.LevelList=[0,0];
-%xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
-%ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
+xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
+ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
 grid on;axis equal;hold on
 dragzoom();
 
@@ -245,8 +245,8 @@ end
 global fc
 fc = fcontour(fun);
 fc.LevelList=[0,0];
-%xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
-%ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
+xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
+ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
 grid on;axis equal;hold on
 dragzoom();
 
@@ -280,8 +280,8 @@ end
 global fc
 fc = fcontour(fun);
 fc.LevelList=[0,0];
-%xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
-%ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
+xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
+ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
 grid on;axis equal;hold on
 dragzoom();
 
@@ -315,8 +315,8 @@ end
 global fc
 fc = fcontour(fun);
 fc.LevelList=[0,0];
-%xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
-%ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
+xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
+ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
 grid on;axis equal;hold on
 dragzoom();
 

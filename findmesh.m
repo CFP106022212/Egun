@@ -83,7 +83,7 @@ for y=floor(ymin):1:ceil(ymax)
     end
 end 
 meshpoint = unique(meshpoint,'rows','stable');
-datafram  = zeros(length(meshpoint),4);
+datafram  = zeros(length(meshpoint),5);
 for i = 1:length(meshpoint)
     datafram(i,1:2) = meshpoint(i,:);
     x  = datafram(i,1);
@@ -129,15 +129,23 @@ for i = 1:length(meshpoint)
         end
     end
 end
-
+for i = 1:length(datafram)
+    x = datafram(i,1);
+    y = datafram(i,2);
+    datafram(i,5) = a*x^2+b*y^2+c*x*y+d*x+e*y+f;
+end
 switch data(11)
     case 1
-        datafram = datafram(datafram(:,4)<=0&datafram(:,4)~=2,:);
+        datafram = datafram(datafram(:,4)<=0&datafram(:,4)~=2,1:4);
     case 2
-        datafram = datafram(datafram(:,4)>=0&datafram(:,4)~=2,:);
+        datafram = datafram(datafram(:,4)>=0&datafram(:,4)~=2,1:4);
     case 3
-        datafram = datafram(datafram(:,3)>=0&datafram(:,3)~=2,:);
+        datafram = datafram(datafram(:,3)>=0&datafram(:,3)~=2,1:4);
     case 4
-        datafram = datafram(datafram(:,3)<=0&datafram(:,3)~=2,:);
+        datafram = datafram(datafram(:,3)<=0&datafram(:,3)~=2,1:4);
+    case 5
+        datafram = datafram(datafram(:,5)<=0,1:4);
+    case 6
+        datafram = datafram(datafram(:,5)>=0,1:4);
 end
 output = datafram;
