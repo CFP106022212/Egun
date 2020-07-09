@@ -49,7 +49,15 @@ fntic = fntic+1;
 disp(N);
 data = findmesh(N);
 for j = 1:length(data)
-    meshpoint(i,:) = [N(12),data(j,:)];
+    if N(12)-1~=0
+        if data(j,3) == 0
+            data(j,3) = 0.001;
+        end
+        if data(j,4) == 0
+            data(j,4) = 0.001;
+        end
+    end 
+    meshpoint(i,:) = [N(12)-1,data(j,:)];
     i = i+1;
 end
 
@@ -112,3 +120,24 @@ scatter(linepoint(:,2),linepoint(:,1));
 function pushbutton8_Callback(hObject, eventdata, handles)
 cla reset;
 clc;clear;
+
+function pushbutton9_Callback(hObject, eventdata, handles)
+global oldmesh
+meshpoint = oldmesh(:,2:3);
+meshpoint = sortrows(meshpoint);
+doublepoint = zeros(1,2);
+j = 1;
+for i = 1:length(meshpoint)-1
+   if  meshpoint(i,1)==meshpoint(i+1,1) && meshpoint(i,2)==meshpoint(i+1,2)
+       doublepoint(j,:) = meshpoint(i,1:2);
+       j = j+1;
+   end
+end
+if j~=1
+   scatter(doublepoint(:,1),doublepoint(:,2),100,'r');
+   disp(doublepoint);
+else
+   disp('No double used points');
+end
+
+

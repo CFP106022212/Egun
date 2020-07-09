@@ -115,8 +115,8 @@ end
 global fc
 fc = fcontour(fun);
 fc.LevelList=[0,0];
-xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
-ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
+%xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
+%ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
 grid on;axis equal;hold on
 dragzoom();
 
@@ -152,8 +152,8 @@ end
 global fc
 fc = fcontour(fun);
 fc.LevelList=[0,0];
-xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
-ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
+%xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
+%ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
 grid on;axis equal;hold on
 dragzoom();
 
@@ -183,8 +183,8 @@ end
 global fc
 fc = fcontour(fun);
 fc.LevelList=[0,0];
-xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
-ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
+%xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
+%ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
 grid on;axis equal;hold on
 dragzoom();
 
@@ -214,8 +214,8 @@ end
 global fc
 fc = fcontour(fun);
 fc.LevelList=[0,0];
-xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
-ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
+%xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
+%ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
 grid on;axis equal;hold on
 dragzoom();
 
@@ -245,8 +245,8 @@ end
 global fc
 fc = fcontour(fun);
 fc.LevelList=[0,0];
-xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
-ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
+%xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
+%ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
 grid on;axis equal;hold on
 dragzoom();
 
@@ -280,8 +280,8 @@ end
 global fc
 fc = fcontour(fun);
 fc.LevelList=[0,0];
-xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
-ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
+%xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
+%ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
 grid on;axis equal;hold on
 dragzoom();
 
@@ -315,8 +315,8 @@ end
 global fc
 fc = fcontour(fun);
 fc.LevelList=[0,0];
-xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
-ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
+%xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
+%ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
 grid on;axis equal;hold on
 dragzoom();
 
@@ -345,145 +345,29 @@ end
 global me
 me = scatter(data(:,1),data(:,2));
 
-%{
-for x=floor(xmin):1:ceil(xmax)
-    a1 = b;
-    b1 = c*x+e;
-    c1 = d*x+f+a*x^2;
-    if a1~=0
-        if b1^2-4*a1*c1>0
-            if (-b1+sqrt(b1^2-4*a1*c1))/2/a1<ymax
-                meshpoint(i,:) = [x,floor((-b1+sqrt(b1^2-4*a1*c1))/2/a1)];
-                i = i+1;
-                if ceil((-b1+sqrt(b1^2-4*a1*c1))/2/a1)<ymax
-                    meshpoint(i,:) = [x,ceil((-b1+sqrt(b1^2-4*a1*c1))/2/a1)];
-                    i = i+1;
-                end
-            end 
-            if (-b1-sqrt(b1^2-4*a1*c1))/2/a1>ymin
-                meshpoint(i,:) = [x,ceil((-b1-sqrt(b1^2-4*a1*c1))/2/a1)];
-                i = i+1;
-                if floor((-b1-sqrt(b1^2-4*a1*c1))/2/a1)>ymin
-                    meshpoint(i,:) = [x,floor((-b1-sqrt(b1^2-4*a1*c1))/2/a1)];
-                    i = i+1;
-                end
-            end 
-        end
-    else
-        result = -c1/b1;
-        if ceil(result)<=ymax
-            meshpoint(i,:) = [x,ceil(result)];
-            i = i+1;
-        end
-        if floor(result)>=ymin
-            meshpoint(i,:) = [x,floor(result)];
-            i = i+1;
-        end
-    end
-end
-for y=floor(ymin):1:ceil(ymax)
-    a1 = a;
-    b1 = c*y+d;
-    c1 = b*y^2+e*y+f;
-    if a1~=0
-        if b1^2-4*a1*c1>0
-            if (-b1+sqrt(b1^2-4*a1*c1))/2/a1<xmax
-                meshpoint(i,:) = [floor((-b1+sqrt(b1^2-4*a1*c1))/2/a1),y];
-                i = i+1;
-                if ceil((-b1+sqrt(b1^2-4*a1*c1))/2/a1)<xmax
-                    meshpoint(i,:) = [ceil((-b1+sqrt(b1^2-4*a1*c1))/2/a1),y];
-                    i = i+1;
-                end
-            end 
-            if (-b1-sqrt(b1^2-4*a1*c1))/2/a1>xmin
-                meshpoint(i,:) = [ceil((-b1-sqrt(b1^2-4*a1*c1))/2/a1),y];
-                i = i+1;
-                if floor((-b1-sqrt(b1^2-4*a1*c1))/2/a1)>xmin
-                    meshpoint(i,:) = [floor((-b1-sqrt(b1^2-4*a1*c1))/2/a1),y];
-                    i = i+1;
-                end
-            end 
-        end
-    else
-        result = -c1/b1;
-        if ceil(result)<=xmax
-            meshpoint(i,:) = [ceil(result),y];
-            i = i+1;
-        end
-        if floor(result)>=xmin
-            meshpoint(i,:) = [floor(result),y];
-            i = i+1;
-        end
-    end
-end 
-meshpoint = unique(meshpoint,'rows','stable');
-data      = zeros(length(meshpoint),4);
-for i = 1:length(meshpoint)
-    data(i,1:2) = meshpoint(i,:);
-    x  = data(i,1);
-    y  = data(i,2);
-    
-    a1 = b;
-    b1 = c*x+e;
-    c1 = d*x+f+a*x^2;
-    if a1==0
-        result = -c1/b1;
-        if abs(result-y)<1
-            data(i,4) = result-y;
-        else
-            data(i,4) = 2;
-        end
-    else
-        if abs((-b1+sqrt(b1^2-4*a1*c1))/2/a1-y)<abs((-b1-sqrt(b1^2-4*a1*c1))/2/a1-y) && abs((-b1+sqrt(b1^2-4*a1*c1))/2/a1-y)<1
-            data(i,4) = (-b1+sqrt(b1^2-4*a1*c1))/2/a1-y;
-        elseif abs((-b1-sqrt(b1^2-4*a1*c1))/2/a1-y)<abs((-b1+sqrt(b1^2-4*a1*c1))/2/a1-y) && abs((-b1-sqrt(b1^2-4*a1*c1))/2/a1-y)<1
-            data(i,4) = (-b1-sqrt(b1^2-4*a1*c1))/2/a1-y;
-        else
-            data(i,4) = 2;
-        end
-    end
-    
-    a1 = a;
-    b1 = c*y+d;
-    c1 = b*y^2+e*y+f;
-    if a1==0
-        result = -c1/b1;
-        if abs(result-x)<1
-            data(i,3) = result-x;
-        else
-            data(i,3) = 2;
-        end
-    else
-        if abs((-b1+sqrt(b1^2-4*a1*c1))/2/a1-x)<abs((-b1-sqrt(b1^2-4*a1*c1))/2/a1-x) && abs((-b1+sqrt(b1^2-4*a1*c1))/2/a1-x)<1
-            data(i,3) = (-b1+sqrt(b1^2-4*a1*c1))/2/a1-x;
-        elseif abs((-b1-sqrt(b1^2-4*a1*c1))/2/a1-x)<abs((-b1+sqrt(b1^2-4*a1*c1))/2/a1-x) && abs((-b1-sqrt(b1^2-4*a1*c1))/2/a1-x)<1
-            data(i,3) = (-b1-sqrt(b1^2-4*a1*c1))/2/a1-x;
-        else
-            data(i,3) = 2;
-        end
-    end
-end
-
-try
-    global me
-    delete(me)
-end
-global me
-
-switch get(handles.popupmenu1, 'value')
-    case 1
-        me = scatter(data(data(:,4)<=0&data(:,4)~=2,1),data(data(:,4)<=0&data(:,4)~=2,2));
-    case 2
-        me = scatter(data(data(:,4)>=0&data(:,4)~=2,1),data(data(:,4)>=0&data(:,4)~=2,2));
-    case 3
-        me = scatter(data(data(:,3)>=0&data(:,3)~=2,1),data(data(:,3)>=0&data(:,3)~=2,2));
-    case 4
-        me = scatter(data(data(:,3)<=0&data(:,3)~=2,1),data(data(:,3)<=0&data(:,3)~=2,2));
-end
-%}
-
-
 function pushbutton10_Callback(hObject, eventdata, handles)
+[filename filepath] = uigetfile({'*.xlsx','excel'},'load meshpoint');
+xlsFile = [filepath,filename];
+data = xlsread(xlsFile);
+data = data(:,2:end);
+linepoint = zeros(2,2);
+j = 1;
+for i = 1:length(data)
+    if data(i,3) == 2
+        linepoint(j,:)=[data(i,1),data(i,2)+data(i,4)];
+        j = j+1;
+    elseif data(i,4) == 2
+        linepoint(j,:)=[data(i,1)+data(i,3),data(i,2)];
+        j = j+1;
+    else
+        linepoint(j,:)=[data(i,1)+data(i,3),data(i,2)];
+        linepoint(j+1,:)=[data(i,1),data(i,2)+data(i,4)];
+        j = j+2;
+    end
+end
+scatter(linepoint(:,2),linepoint(:,1));
+grid on;axis equal;hold on
+dragzoom();
 
 function pushbutton11_Callback(hObject, eventdata, handles)
 cla reset;
