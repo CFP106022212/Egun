@@ -98,24 +98,25 @@ global oldmesh;
 [filename filepath] = uigetfile({'*.xlsx','excel'},'load meshpoint');
 xlsFile = [filepath,filename];
 oldmesh = xlsread(xlsFile);
-data = oldmesh(:,2:end);
-linepoint = zeros(2,2);
+linepoint = zeros(2,3);
 j = 1;
-for i = 1:length(data)
-    if data(i,3) == 2
-        linepoint(j,:)=[data(i,1),data(i,2)+data(i,4)];
+for i = 1:length(oldmesh)
+    if oldmesh(i,4) == 2
+        linepoint(j,:)=[oldmesh(i,1),oldmesh(i,2),oldmesh(i,3)+oldmesh(i,5)];
         j = j+1;
-    elseif data(i,4) == 2
-        linepoint(j,:)=[data(i,1)+data(i,3),data(i,2)];
+    elseif oldmesh(i,5) == 2
+        linepoint(j,:)=[oldmesh(i,1),oldmesh(i,2)+oldmesh(i,4),oldmesh(i,3)];
         j = j+1;
     else
-        linepoint(j,:)=[data(i,1)+data(i,3),data(i,2)];
-        linepoint(j+1,:)=[data(i,1),data(i,2)+data(i,4)];
+        linepoint(j,:)=[oldmesh(i,1),oldmesh(i,2)+oldmesh(i,4),oldmesh(i,3)];
+        linepoint(j+1,:)=[oldmesh(i,1),oldmesh(i,2),oldmesh(i,3)+oldmesh(i,5)];
         j = j+2;
     end
 end
-scatter(linepoint(:,2),linepoint(:,1));
-hold on;grid on;axis equal;
+scatter(linepoint(linepoint(:,1)==0,3),linepoint(linepoint(:,1)==0,2),'b');hold on;
+scatter(linepoint(linepoint(:,1)==1,3),linepoint(linepoint(:,1)==1,2),'g');
+scatter(linepoint(linepoint(:,1)==2,3),linepoint(linepoint(:,1)==2,2),'k');
+grid on;axis equal;
 dragzoom();
 
 function pushbutton8_Callback(hObject, eventdata, handles)
