@@ -117,7 +117,7 @@ fc = fcontour(fun);
 fc.LevelList=[0,0];
 xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
 ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
-grid on;axis equal;hold on
+grid on;hold on
 dragzoom();
 
 function pushbutton2_Callback(hObject, eventdata, handles)
@@ -154,7 +154,7 @@ fc = fcontour(fun);
 fc.LevelList=[0,0];
 xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
 ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
-grid on;axis equal;hold on
+grid on;hold on
 dragzoom();
 
 function pushbutton4_Callback(hObject, eventdata, handles)
@@ -185,7 +185,7 @@ fc = fcontour(fun);
 fc.LevelList=[0,0];
 xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
 ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
-grid on;axis equal;hold on
+grid on;hold on
 dragzoom();
 
 function pushbutton5_Callback(hObject, eventdata, handles)
@@ -216,7 +216,7 @@ fc = fcontour(fun);
 fc.LevelList=[0,0];
 xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
 ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
-grid on;axis equal;hold on
+grid on;hold on
 dragzoom();
 
 function pushbutton6_Callback(hObject, eventdata, handles)
@@ -247,7 +247,7 @@ fc = fcontour(fun);
 fc.LevelList=[0,0];
 xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
 ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
-grid on;axis equal;hold on
+grid on;hold on
 dragzoom();
 
 function pushbutton7_Callback(hObject, eventdata, handles)
@@ -282,7 +282,7 @@ fc = fcontour(fun);
 fc.LevelList=[0,0];
 xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
 ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
-grid on;axis equal;hold on
+grid on;hold on
 dragzoom();
 
 function pushbutton8_Callback(hObject, eventdata, handles)
@@ -317,7 +317,7 @@ fc = fcontour(fun);
 fc.LevelList=[0,0];
 xlim([str2double(handles.edit10.String) str2double(handles.edit11.String)]);
 ylim([str2double(handles.edit12.String) str2double(handles.edit13.String)]);
-grid on;axis equal;hold on
+grid on;hold on
 dragzoom();
 
 function pushbutton9_Callback(hObject, eventdata, handles)
@@ -366,7 +366,7 @@ for i = 1:length(data)
     end
 end
 scatter(linepoint(:,2),linepoint(:,1));
-grid on;axis equal;hold on
+grid on;hold on;
 dragzoom();
 
 function pushbutton11_Callback(hObject, eventdata, handles)
