@@ -113,6 +113,7 @@ for i = 1:length(oldmesh)
         j = j+2;
     end
 end
+cla;
 scatter(linepoint(linepoint(:,1)==0,3),linepoint(linepoint(:,1)==0,2),'b');hold on;
 scatter(linepoint(linepoint(:,1)==1,3),linepoint(linepoint(:,1)==1,2),'g');
 scatter(linepoint(linepoint(:,1)==2,3),linepoint(linepoint(:,1)==2,2),'k');
@@ -145,14 +146,14 @@ else
 end
 
 function pushbutton10_Callback(hObject, eventdata, handles)
-global oldmesh
+%global oldmesh
 global meshpoint
 N = deletemeshpoint(handles);
-mid = [oldmesh(:,1) oldmesh(:,3) oldmesh(:,2) oldmesh(:,5) oldmesh(:,4)];
-mid = mid(mid(:,2)>N(1)&mid(:,2)<N(2)&mid(:,3)>N(3)&mid(:,3)<N(4),:);
-meshpoint = mid;
+meshpoint = N;
 cla;
-scatter(mid(:,2),mid(:,3));
+scatter(N(N(:,1)==0,2),N(N(:,1)==0,3),'b');hold on;
+scatter(N(N(:,1)==1,2),N(N(:,1)==1,3),'g');
+scatter(N(N(:,1)==2,2),N(N(:,1)==2,3),'k');
 hold on;grid on;axis equal;
 dragzoom();
 
