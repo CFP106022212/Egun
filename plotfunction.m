@@ -121,7 +121,22 @@ grid on;hold on
 dragzoom();
 
 function pushbutton2_Callback(hObject, eventdata, handles)
-handles.output = [str2double(handles.edit1.String) str2double(handles.edit2.String) str2double(handles.edit3.String) str2double(handles.edit4.String) str2double(handles.edit5.String) str2double(handles.edit6.String) str2double(handles.edit10.String) str2double(handles.edit11.String) str2double(handles.edit12.String) str2double(handles.edit13.String) get(handles.popupmenu1, 'value') get(handles.popupmenu2, 'value')];
+a = str2double(handles.edit1.String);
+b = str2double(handles.edit2.String);
+c = str2double(handles.edit3.String);
+d = str2double(handles.edit4.String);
+e = str2double(handles.edit5.String);
+f = str2double(handles.edit6.String);
+xmin = str2double(handles.edit10.String);
+xmax = str2double(handles.edit11.String);
+ymin = str2double(handles.edit12.String);
+ymax = str2double(handles.edit13.String);
+tmin = str2double(handles.edit15.String);
+tmax = str2double(handles.edit16.String);
+position = get(handles.popupmenu1, 'value');
+type     = get(handles.popupmenu2, 'value');
+handles.output =[a,b,c,d,e,f,xmin,xmax,ymin,ymax,tmin,tmax,position,type];
+%handles.output = [str2double(handles.edit1.String) str2double(handles.edit2.String) str2double(handles.edit3.String) str2double(handles.edit4.String) str2double(handles.edit5.String) str2double(handles.edit6.String) str2double(handles.edit10.String) str2double(handles.edit11.String) str2double(handles.edit12.String) str2double(handles.edit13.String) get(handles.popupmenu1, 'value') get(handles.popupmenu2, 'value')];
 %disp([str2double(handles.edit1.String) str2double(handles.edit2.String) str2double(handles.edit3.String) str2double(handles.edit4.String) str2double(handles.edit5.String) str2double(handles.edit6.String) str2double(handles.edit10.String) str2double(handles.edit11.String) str2double(handles.edit12.String) str2double(handles.edit13.String) get(handles.popupmenu1, 'value') get(handles.popupmenu2, 'value')]);
 guidata(hObject, handles);
 uiresume(handles.figure1);
@@ -327,16 +342,16 @@ c = str2double(handles.edit3.String);
 d = str2double(handles.edit4.String);
 e = str2double(handles.edit5.String);
 f = str2double(handles.edit6.String);
-%meshpoint = zeros(2,2);
-%i = 1;
 xmin = str2double(handles.edit10.String);
 xmax = str2double(handles.edit11.String);
 ymin = str2double(handles.edit12.String);
 ymax = str2double(handles.edit13.String);
+tmin = str2double(handles.edit15.String);
+tmax = str2double(handles.edit16.String);
 
 position = get(handles.popupmenu1, 'value');
 type     = get(handles.popupmenu2, 'value');
-data     = findmesh([a,b,c,d,e,f,xmin,xmax,ymin,ymax,position,type]);
+data     = findmesh([a,b,c,d,e,f,xmin,xmax,ymin,ymax,tmin,tmax,position,type]);
 %disp([a,b,c,d,e,f,xmin,xmax,ymin,ymax,position,type]);
 try
     global me

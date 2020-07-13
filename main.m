@@ -23,8 +23,8 @@ global meshpoint
 global allfunction
 global i
 global fntic
-meshpoint   = zeros(2, 5);
-allfunction = zeros(2,12);
+meshpoint   = zeros(1, 5);
+allfunction = zeros(1,14);
 i = 1;
 fntic = 1;
 % UIWAIT makes main wait for user response (see UIRESUME)
@@ -48,7 +48,7 @@ fntic = fntic+1;
 
 data = findmesh(N);
 for j = 1:length(data)
-    if N(12)-1~=0
+    if N(14)-1~=0
         if data(j,3) == 0
             data(j,3) = 0.001;
         end
@@ -56,7 +56,7 @@ for j = 1:length(data)
             data(j,4) = 0.001;
         end
     end 
-    meshpoint(i,:) = [N(12)-1,data(j,:)];
+    meshpoint(i,:) = [N(14)-1,data(j,:)];
     i = i+1;
 end
 

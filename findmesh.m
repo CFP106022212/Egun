@@ -9,6 +9,8 @@ xmin = data(7);
 xmax = data(8);
 ymin = data(9);
 ymax = data(10);
+tmin = data(11);
+tmax = data(12);
 meshpoint = zeros(2,2);
 i = 1;
 
@@ -134,7 +136,7 @@ for i = 1:length(datafram)
     y = datafram(i,2);
     datafram(i,5) = a*x^2+b*y^2+c*x*y+d*x+e*y+f;
 end
-switch data(11)
+switch data(13)
     case 1
         datafram = datafram(datafram(:,4)<=0&datafram(:,4)~=2,1:4);
     case 2
@@ -147,5 +149,11 @@ switch data(11)
         datafram = datafram(datafram(:,5)<=0,1:4);
     case 6
         datafram = datafram(datafram(:,5)>=0,1:4);
+end
+if a*b~=0
+    x0 = -(c*e-2*b*d)/(c^2-4*a*b);
+    y0 = -(2*a*e-c*d)/(4*a*b-c^2);
+    ang = rad2deg(atan2(datafram(:,2)-y0,datafram(:,1)-x0));
+    datafram = datafram(ang<=tmax&ang>=tmin,:);
 end
 output = datafram;
