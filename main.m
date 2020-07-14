@@ -21,12 +21,16 @@ handles.output = hObject;
 guidata(hObject, handles);
 global meshpoint
 global allfunction
-global i
+global oldmesh
+global oldfn
 global fntic
+global i
 meshpoint   = zeros(1, 5);
 allfunction = zeros(1,14);
-i = 1;
+oldmesh     = zeros(1, 5);
+oldfn       = zeros(1,14);
 fntic = 1;
+i = 1;
 % UIWAIT makes main wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
 
@@ -48,7 +52,7 @@ fntic = fntic+1;
 
 data = findmesh(N);
 for j = 1:length(data)
-    if N(14)-1~=0
+    if N(14)~=0
         if data(j,3) == 0
             data(j,3) = 0.001;
         end
@@ -56,7 +60,7 @@ for j = 1:length(data)
             data(j,4) = 0.001;
         end
     end 
-    meshpoint(i,:) = [N(14)-1,data(j,:)];
+    meshpoint(i,:) = [N(14),data(j,:)];
     i = i+1;
 end
 
@@ -85,13 +89,45 @@ function pushbutton3_Callback(hObject, eventdata, handles)
 global meshpoint
 [filename filepath] = uiputfile({'*.xlsx','excel'},'save meshpoint','meshpoint.xlsx');
 new = [meshpoint(:,1) meshpoint(:,3) meshpoint(:,2) meshpoint(:,5) meshpoint(:,4)];
+try
+    delete([filepath,filename]);
+end
 xlswrite([filepath,filename],new);
 
 function pushbutton4_Callback(hObject, eventdata, handles)
 global oldfn;
+global oldmesh;
 [filename filepath] = uigetfile({'*.xlsx','excel'},'load function');
 xlsFile = [filepath,filename];
 oldfn = xlsread(xlsFile);
+%%%%%%%%
+for i = 1:length(oldfn(:,1))
+    data = findmesh(oldfn(i,:));
+    oldmesh = [oldmesh;[oldfn(i,14)*ones(length(data(:,1)),1) data]];
+end
+oldmesh = oldmesh(2:end,:);
+%%%%%%%%
+linepoint = zeros(2,3);
+j = 1;
+for i = 1:length(oldmesh(:,1))
+    if oldmesh(i,4) == 2
+        linepoint(j,:)=[oldmesh(i,1),oldmesh(i,2),oldmesh(i,3)+oldmesh(i,5)];
+        j = j+1;
+    elseif oldmesh(i,5) == 2
+        linepoint(j,:)=[oldmesh(i,1),oldmesh(i,2)+oldmesh(i,4),oldmesh(i,3)];
+        j = j+1;
+    else
+        linepoint(j,:)=[oldmesh(i,1),oldmesh(i,2)+oldmesh(i,4),oldmesh(i,3)];
+        linepoint(j+1,:)=[oldmesh(i,1),oldmesh(i,2),oldmesh(i,3)+oldmesh(i,5)];
+        j = j+2;
+    end
+end
+cla;
+scatter(linepoint(linepoint(:,1)==0,3),linepoint(linepoint(:,1)==0,2),'b');hold on;
+scatter(linepoint(linepoint(:,1)==1,3),linepoint(linepoint(:,1)==1,2),'g');
+scatter(linepoint(linepoint(:,1)==2,3),linepoint(linepoint(:,1)==2,2),'k');
+grid on;axis equal;
+dragzoom();
 
 function pushbutton5_Callback(hObject, eventdata, handles)
 global oldmesh;
@@ -123,6 +159,18 @@ dragzoom();
 function pushbutton8_Callback(hObject, eventdata, handles)
 cla reset;
 clc;clear;
+global meshpoint
+global allfunction
+global oldmesh
+global oldfn
+global fntic
+global i
+meshpoint   = zeros(1, 5);
+allfunction = zeros(1,14);
+oldmesh     = zeros(1, 5);
+oldfn       = zeros(1,14);
+fntic = 1;
+i = 1;
 
 function pushbutton9_Callback(hObject, eventdata, handles)
 global oldmesh

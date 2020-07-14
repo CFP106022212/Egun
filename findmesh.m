@@ -85,8 +85,8 @@ for y=floor(ymin):1:ceil(ymax)
     end
 end 
 meshpoint = unique(meshpoint,'rows','stable');
-datafram  = zeros(length(meshpoint),5);
-for i = 1:length(meshpoint)
+datafram  = zeros(length(meshpoint(:,1)),5);
+for i = 1:length(meshpoint(:,1))
     datafram(i,1:2) = meshpoint(i,:);
     x  = datafram(i,1);
     y  = datafram(i,2);
@@ -131,7 +131,7 @@ for i = 1:length(meshpoint)
         end
     end
 end
-for i = 1:length(datafram)
+for i = 1:length(datafram(:,1))
     x = datafram(i,1);
     y = datafram(i,2);
     datafram(i,5) = a*x^2+b*y^2+c*x*y+d*x+e*y+f;
@@ -150,10 +150,24 @@ switch data(13)
     case 6
         datafram = datafram(datafram(:,5)>=0,1:4);
 end
-if a*b~=0
-    x0 = -(c*e-2*b*d)/(c^2-4*a*b);
-    y0 = -(2*a*e-c*d)/(4*a*b-c^2);
-    ang = rad2deg(atan2(datafram(:,2)-y0,datafram(:,1)-x0));
-    datafram = datafram(ang<=tmax&ang>=tmin,:);
-end
+if tmax<180.001
+    if a*b~=0
+        x0 = -(c*e-2*b*d)/(c^2-4*a*b);
+        y0 = -(2*a*e-c*d)/(4*a*b-c^2);
+        ang = rad2deg(atan2(datafram(:,2)-y0,datafram(:,1)-x0));
+        datafram = datafram(ang<=tmax&ang>=tmin,:);
+    end
+else
+    if a*b~=0
+        x0 = -(c*e-2*b*d)/(c^2-4*a*b);
+        y0 = -(2*a*e-c*d)/(4*a*b-c^2);
+        ang = rad2deg(atan2(datafram(:,2)-y0,datafram(:,1)-x0));
+        for i = 1:length(ang(:,1))
+           if ang(i)<0
+               ang(i) = ang(i)+360;
+           end
+        end
+        datafram = datafram(ang<=tmax&ang>=tmin,:);
+    end
+end 
 output = datafram;

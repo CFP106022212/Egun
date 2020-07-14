@@ -134,7 +134,7 @@ ymax = str2double(handles.edit13.String);
 tmin = str2double(handles.edit15.String);
 tmax = str2double(handles.edit16.String);
 position = get(handles.popupmenu1, 'value');
-type     = get(handles.popupmenu2, 'value');
+type     = get(handles.popupmenu2, 'value')-1;
 handles.output =[a,b,c,d,e,f,xmin,xmax,ymin,ymax,tmin,tmax,position,type];
 %handles.output = [str2double(handles.edit1.String) str2double(handles.edit2.String) str2double(handles.edit3.String) str2double(handles.edit4.String) str2double(handles.edit5.String) str2double(handles.edit6.String) str2double(handles.edit10.String) str2double(handles.edit11.String) str2double(handles.edit12.String) str2double(handles.edit13.String) get(handles.popupmenu1, 'value') get(handles.popupmenu2, 'value')];
 %disp([str2double(handles.edit1.String) str2double(handles.edit2.String) str2double(handles.edit3.String) str2double(handles.edit4.String) str2double(handles.edit5.String) str2double(handles.edit6.String) str2double(handles.edit10.String) str2double(handles.edit11.String) str2double(handles.edit12.String) str2double(handles.edit13.String) get(handles.popupmenu1, 'value') get(handles.popupmenu2, 'value')]);
@@ -367,7 +367,7 @@ data = xlsread(xlsFile);
 data = data(:,2:end);
 linepoint = zeros(2,2);
 j = 1;
-for i = 1:length(data)
+for i = 1:length(data(:,1))
     if data(i,3) == 2
         linepoint(j,:)=[data(i,1),data(i,2)+data(i,4)];
         j = j+1;
