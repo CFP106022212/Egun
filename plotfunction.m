@@ -277,14 +277,14 @@ theta = -str2double(handles.edit9.String);
 if handles.checkbox1.Value
     x0 = -(c*e-2*b*d)/(c^2-4*a*b);
     y0 = -(2*a*e-c*d)/(4*a*b-c^2);
-    f  = f-x0^2-y0^2-x0*y0+d*x0-e*y0;
-
+    f  = f+a*x0^2+b*y0^2+d*x0+e*y0;
+  
     a1 = a*cos(theta)^2+b*sin(theta)^2+c*cos(theta)*sin(theta);
     b1 = a*sin(theta)^2+b*cos(theta)^2-c*cos(theta)*sin(theta);
     c1 = -2*a*cos(theta)*sin(theta)+2*b*cos(theta)*sin(theta)+c*cos(theta)^2-c*sin(theta)^2;
     d1 = d;
     e1 = e;
-    f1 = f+a1*x0^2+b1*y0^2+c1*x0*y0;
+    f1 = f-a1*x0^2-b1*y0^2;
 else
     a1 = a*cos(theta)^2+b*sin(theta)^2+c*cos(theta)*sin(theta);
     b1 = a*sin(theta)^2+b*cos(theta)^2-c*cos(theta)*sin(theta);
@@ -298,7 +298,7 @@ set(handles.edit2,'string',num2str(b1));b = b1;
 set(handles.edit3,'string',num2str(c1));c = c1;
 set(handles.edit4,'string',num2str(d1));d = d1;
 set(handles.edit5,'string',num2str(e1));e = e1;
-set(handles.edit5,'string',num2str(e1));f = f1;
+set(handles.edit6,'string',num2str(f1));f = f1;
 
 syms x y;
 fun(x,y) = (a*x^2+b*y^2+c*x*y+d*x+e*y+f);
