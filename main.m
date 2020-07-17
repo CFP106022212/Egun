@@ -126,6 +126,9 @@ cla;
 scatter(linepoint(linepoint(:,1)==0,3),linepoint(linepoint(:,1)==0,2),'b');hold on;
 scatter(linepoint(linepoint(:,1)==1,3),linepoint(linepoint(:,1)==1,2),'g');
 scatter(linepoint(linepoint(:,1)==2,3),linepoint(linepoint(:,1)==2,2),'k');
+scatter(linepoint(linepoint(:,1)==3,3),linepoint(linepoint(:,1)==3,2),'c');
+scatter(linepoint(linepoint(:,1)==4,3),linepoint(linepoint(:,1)==4,2),'m');
+scatter(linepoint(linepoint(:,1)==5,3),linepoint(linepoint(:,1)==5,2),'y');
 grid on;axis equal;
 dragzoom();
 
@@ -153,6 +156,9 @@ cla;
 scatter(linepoint(linepoint(:,1)==0,3),linepoint(linepoint(:,1)==0,2),'b');hold on;
 scatter(linepoint(linepoint(:,1)==1,3),linepoint(linepoint(:,1)==1,2),'g');
 scatter(linepoint(linepoint(:,1)==2,3),linepoint(linepoint(:,1)==2,2),'k');
+scatter(linepoint(linepoint(:,1)==3,3),linepoint(linepoint(:,1)==3,2),'c');
+scatter(linepoint(linepoint(:,1)==4,3),linepoint(linepoint(:,1)==4,2),'m');
+scatter(linepoint(linepoint(:,1)==5,3),linepoint(linepoint(:,1)==5,2),'y');
 grid on;axis equal;
 dragzoom();
 
@@ -202,6 +208,9 @@ cla;
 scatter(N(N(:,1)==0,2),N(N(:,1)==0,3),'b');hold on;
 scatter(N(N(:,1)==1,2),N(N(:,1)==1,3),'g');
 scatter(N(N(:,1)==2,2),N(N(:,1)==2,3),'k');
+scatter(N(N(:,1)==3,2),N(N(:,1)==3,3),'c');
+scatter(N(N(:,1)==4,2),N(N(:,1)==4,3),'m');
+scatter(N(N(:,1)==5,2),N(N(:,1)==5,3),'y');
 hold on;grid on;axis equal;
 dragzoom();
 
