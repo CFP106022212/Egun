@@ -43,6 +43,9 @@ hold on;
 scatter(meshpoint(meshpoint(:,1)==0,2),meshpoint(meshpoint(:,1)==0,3),'b');
 scatter(meshpoint(meshpoint(:,1)==1,2),meshpoint(meshpoint(:,1)==1,3),'g');
 scatter(meshpoint(meshpoint(:,1)==2,2),meshpoint(meshpoint(:,1)==2,3),'k');
+scatter(meshpoint(meshpoint(:,1)==3,2),meshpoint(meshpoint(:,1)==3,3),'c');
+scatter(meshpoint(meshpoint(:,1)==4,2),meshpoint(meshpoint(:,1)==4,3),'m');
+scatter(meshpoint(meshpoint(:,1)==5,2),meshpoint(meshpoint(:,1)==5,3),'y');
 grid on;axis equal;
 dragzoom();
 
@@ -62,6 +65,9 @@ cla;
 scatter(meshpoint(meshpoint(:,1)==0,2),meshpoint(meshpoint(:,1)==0,3),'b');hold on;
 scatter(meshpoint(meshpoint(:,1)==1,2),meshpoint(meshpoint(:,1)==1,3),'g');
 scatter(meshpoint(meshpoint(:,1)==2,2),meshpoint(meshpoint(:,1)==2,3),'k');
+scatter(meshpoint(meshpoint(:,1)==3,2),meshpoint(meshpoint(:,1)==3,3),'c');
+scatter(meshpoint(meshpoint(:,1)==4,2),meshpoint(meshpoint(:,1)==4,3),'m');
+scatter(meshpoint(meshpoint(:,1)==5,2),meshpoint(meshpoint(:,1)==5,3),'y');
 grid on;axis equal;
 dragzoom();
 
