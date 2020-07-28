@@ -406,6 +406,13 @@ for i = 1:length(data(:,1))
     end
 end
 scatter(linepoint(:,2),linepoint(:,1));
+if (max(linepoint(:,2))-min(linepoint(:,2)))>(max(linepoint(:,1))-min(linepoint(:,1)))
+    xlim([min(linepoint(:,2)),max(linepoint(:,2))]);
+    axis equal;
+else
+    ylim([min(linepoint(:,1)),max(linepoint(:,1))]);
+    axis equal;
+end 
 grid on;hold on;
 dragzoom();
 
