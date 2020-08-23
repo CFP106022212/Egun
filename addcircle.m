@@ -1,5 +1,4 @@
-function output = addcircle(x,y,x0,y0,angle,position,type)
+function output = addcircle(x,y,x0,y0,tmin,tmax,position,type)
     R = (x-x0)^2+(y-y0)^2;
-    theta0 = rad2deg(atan2(y-y0,x-x0));
-    output = [0,0,0,1,1,-R,x-sqrt(R),x+sqrt(R),y-sqrt(R),y+sqrt(R),theta0,angle,position,type];
+    output = [1,1,0,-2*x0,-2*y0,-R+x0^2+y0^2,x0-sqrt(R),x0+sqrt(R),y0-sqrt(R),y0+sqrt(R),tmin,tmax,position,type];
 end
